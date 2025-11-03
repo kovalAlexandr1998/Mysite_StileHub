@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'CSS/style_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- Кнопка Выйти сверху -->
+<a href="{% url 'logout' %}" class="page-logout">Выйти</a>
+
+<div class="profile-hero">
+    <div class="profile-overlay"></div>
+    <div class="profile-container">
+
+        <!-- Левая колонка -->
+        <div class="profile-left">
+            <!-- Аватар -->
+            <div class="profile-avatar">
+                {% if user.profile.avatar %}
+                    <img src="{{ user.profile.avatar.url }}" alt="Аватар">
+                {% else %}
+                    <img src="{% static 'images/avatar_placeholder.png' %}" alt="Аватар">
+                {% endif %}
+            </div>
+
+            <!-- Сменить аватарку -->
+            <label for="{{ profile_form.avatar.id_for_label }}" class="avatar-label">Сменить аватарку</label>
+            {{ profile_form.avatar }}
+
+            <form method="post" enctype="multipart/form-data" class="profile-form">
+                {% csrf_token %}
+
+                {{ user_form.first_name.label_tag }} {{ user_form.first_name }}
+                {{ user_form.last_name.label_tag }} {{ user_form.last_name }}
+                {{ profile_form.middle_name.label_tag }} {{ profile_form.middle_name }}
+                {{ profile_form.birth_year.label_tag }} {{ profile_form.birth_year }}
+                {{ profile_form.city.label_tag }} {{ profile_form.city }}
+                {{ profile_form.phone.label_tag }} {{ profile_form.phone }}
+                {{ profile_form.address.label_tag }} {{ profile_form.address }}
+
+                <button type="submit" class="btn-save">Сохранить</button>
+            </form>
+        </div>
+
+        <!-- Правая колонка -->
+        <div class="profile-right">
+            <h3>Мои заказы</h3>
+            {% if orders %}
+                <table class="orders-table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Дата</th>
+                        <th>Статус</th>
+                        <th>Сумма</th>
+                    </tr>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.created_at|date:"d.m.Y" }}</td>
+                            <td>{{ order.status }}</td>
+                            <td>{{ order.get_total_cost }} ₴</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>У вас пока нет заказов.</p>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'CSS/style_auth.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="auth-hero">
+    <div class="auth-overlay"></div>
+    <div class="auth-container">
+        <h2>Вход</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p class="message {{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Имя пользователя" class="input-field" required>
+            <input type="password" name="password" placeholder="Пароль" class="input-field" required>
+            <button type="submit">Войти</button>
+        </form>
+
+        <p>Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a></p>
+    </div>
+</div>
+{% endblock %}
