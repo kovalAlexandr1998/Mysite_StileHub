@@ -1,0 +1,283 @@
+/* === Базовые настройки === */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    color: #222;
+    background-color: #f7f7f7;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    color: #111;
+}
+
+/* === HERO — главная секция === */
+.hero {
+    position: relative;
+    height: 100vh;
+    background: linear-gradient(to bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.2)),
+                url("../images/registration.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    max-width: 750px;
+    animation: fadeIn 1.5s ease forwards;
+}
+
+.hero-content h1 {
+    font-size: 4em;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.hero-content p {
+    font-size: 1.3em;
+    margin-bottom: 35px;
+    color: #f1f1f1;
+}
+
+.btn-primary {
+    display: inline-block;
+    background: #ff4e50;
+    color: #fff;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(255, 78, 80, 0.3);
+}
+
+.btn-primary:hover {
+    background: #ff7679;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(255, 78, 80, 0.5);
+}
+
+/* === FEATURES === */
+.features {
+    padding: 100px 8%;
+    background: #fff;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2.5em;
+    margin-bottom: 60px;
+    color: #111;
+    position: relative;
+}
+
+.features h2::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #ff4e50;
+    margin: 20px auto 0;
+    border-radius: 2px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 40px;
+}
+
+.feature-card {
+    background: #fafafa;
+    border-radius: 20px;
+    padding: 35px 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.feature-card i {
+    font-size: 2.5em;
+    color: #ff4e50;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    color: #111;
+}
+
+.feature-card p {
+    color: #666;
+}
+
+/* === PROMO === */
+.promo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 8%;
+    background: #f9f9f9;
+    gap: 60px;
+}
+
+.promo-text {
+    flex: 1 1 400px;
+    animation: fadeInLeft 1s ease;
+}
+
+.promo-text h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.promo-text p {
+    color: #555;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+.btn-secondary {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    padding: 13px 36px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: #ff4e50;
+    transform: translateY(-3px);
+}
+
+.promo-image img {
+    width: 420px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.4s ease;
+}
+
+.promo-image img:hover {
+    transform: scale(1.05);
+}
+
+/* === SUBSCRIBE === */
+.subscribe {
+    text-align: center;
+    padding: 80px 5%;
+    background: linear-gradient(135deg, #ff4e50, #f9d423);
+    color: #fff;
+    border-radius: 50px 50px 0 0;
+    box-shadow: 0 -5px 30px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.subscribe h2 {
+    font-size: 2.6em;
+    margin-bottom: 15px;
+    color: #fff;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+}
+
+.subscribe p {
+    font-size: 1.2em;
+    margin-bottom: 35px;
+    color: #fff;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+}
+
+.subscribe-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.subscribe-form input {
+    padding: 15px 20px;
+    border-radius: 50px;
+    border: none;
+    font-size: 1em;
+    outline: none;
+    width: 300px;
+    max-width: 100%;
+    transition: all 0.3s ease;
+}
+
+.subscribe-form input:focus {
+    box-shadow: 0 0 10px rgba(255,255,255,0.7);
+}
+
+.subscribe-form button {
+    padding: 15px 35px;
+    border-radius: 50px;
+    background: #111;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease, transform 0.2s ease;
+}
+
+.subscribe-form button:hover {
+    background: #333;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+/* === Анимации === */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* === Адаптивность === */
+@media (max-width: 900px) {
+    .hero-content h1 {
+        font-size: 2.8em;
+    }
+    .promo {
+        flex-direction: column;
+        text-align: center;
+    }
+    .promo-image img {
+        width: 100%;
+        max-width: 380px;
+    }
+}
+.success-message {
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 20px;
+    font-weight: 600;
+    text-align: center;
+}

@@ -1,0 +1,209 @@
+/* ====================== ШАПКА ====================== */
+.site-header {
+    background-color: #111;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    font-family: 'Arial', sans-serif;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Логотип */
+.logo a {
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #e63946; /* красный акцент */
+}
+
+/* Главное меню */
+.main-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.main-nav a {
+    color: #ddd;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.main-nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #e63946;
+    transition: width 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: #fff;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+/* Пользовательская навигация */
+.user-nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-nav a {
+    display: flex;
+    align-items: center;
+    color: #ddd;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.user-nav a:hover {
+    color: #ff4b5c;
+}
+
+/* Аватар */
+.user-nav .avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
+    border: 2px solid #ff4b5c;
+}
+
+/* Имя пользователя */
+.user-nav .user-name {
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Корзина */
+.cart-link {
+    position: relative;
+    font-size: 1.2rem;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: #ff4b5c;
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* Кнопка поиска */
+.search-form {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.search-form input {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    font-size: 14px;
+}
+
+.search-form button {
+    background-color: #ff4b5c;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #ff6b7c;
+}
+
+/* ====================== ОБЩИЕ СТИЛИ ====================== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0b0b0b;
+    color: #fff;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* ====================== АДАПТИВ ====================== */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .main-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .user-nav {
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .search-form {
+        justify-content: center;
+        margin-top: 10px;
+    }
+}
+
+.language-form {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.language-label {
+    margin-right: 5px;
+    cursor: pointer;
+    color: #fff; /* цвет иконки под шапку */
+}
+
+
+
+.language-form select {
+    padding: 2px 5px;
+    border-radius: 4px;
+    border: none;
+    background-color: #333; /* фон селектора под цвет шапки */
+    color: #fff;
+    cursor: pointer;
+}

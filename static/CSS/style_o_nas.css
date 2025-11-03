@@ -1,0 +1,125 @@
+/* ===== О НАС ===== */
+.about-section {
+    position: relative;
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.6)
+        ),
+        url("../images/o_nas.jpg") center/cover no-repeat;
+    color: #fff;
+    padding: 100px 20px;
+}
+
+.about-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
+    opacity: 0.08;
+    z-index: 0;
+}
+
+.about-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.about-text {
+    text-align: left;
+}
+
+.about-text h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #ff4b5c;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.about-text h2 {
+    font-size: 2rem;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: #fff;
+    border-bottom: 2px solid #ff4b5c;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+.about-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.about-card {
+    flex: 1 1 220px;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.15);
+}
+
+.about-card h3 {
+    margin-bottom: 10px;
+    color: #ff4b5c;
+}
+
+.about-card p {
+    font-size: 1rem;
+    color: #ddd;
+}
+
+.about-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 36px;
+    background: #ff4b5c;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.35s ease;
+}
+
+.about-btn:hover {
+    background: #ff6b7c;
+    transform: translateY(-4px) scale(1.05);
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .about-text h1 {
+        font-size: 2.4rem;
+    }
+
+    .about-text h2 {
+        font-size: 1.6rem;
+    }
+
+    .about-text p {
+        font-size: 1rem;
+    }
+
+    .about-cards {
+        flex-direction: column;
+        text-align: center;
+    }
+}

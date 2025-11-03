@@ -1,0 +1,146 @@
+/* ===================== Общие настройки ===================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* ===================== Контейнер заказа ===================== */
+.order-section {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px 40px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Заголовки */
+.order-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: #222;
+}
+
+/* Подзаголовки */
+.order-section h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* Таблица товаров */
+.order-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.order-section table th,
+.order-section table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.order-section table th {
+    background-color: #f9fafb;
+    font-weight: 600;
+}
+
+.order-section table tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Итоговая сумма */
+.order-section .total {
+    text-align: right;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #007bff;
+}
+
+/* Форма заказа */
+.order-form {
+    margin-top: 30px;
+}
+
+.order-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Поля ввода */
+.order-form input[type="text"],
+.order-form input[type="email"] {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.order-form input[type="text"]:focus,
+.order-form input[type="email"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+/* Кнопка */
+.btn-primary {
+    padding: 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Сообщение подтверждения заказа */
+.order-confirmation {
+    text-align: center;
+    padding: 50px;
+}
+
+.order-confirmation h2 {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.order-confirmation p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .order-section {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .order-form input[type="text"],
+    .order-form input[type="email"] {
+        padding: 10px;
+    }
+
+    .btn-primary {
+        padding: 12px;
+        font-size: 1rem;
+    }
+}

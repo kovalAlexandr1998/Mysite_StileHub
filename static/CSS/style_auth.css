@@ -1,0 +1,88 @@
+/* ===== Фон с картинкой ===== */
+.auth-hero {
+    position: relative;
+    min-height: 100vh;
+    background: url("../images/registration.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Затемнение фона */
+.auth-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+/* Форма поверх фона */
+.auth-container {
+    position: relative;
+    z-index: 2; /* чтобы быть поверх overlay */
+    max-width: 400px;
+    width: 90%;
+    padding: 40px;
+    background: rgba(30, 30, 30, 0.9); /* прозрачный фон */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255,75,92,0.4);
+    text-align: center;
+}
+
+/* Остальной твой стиль для h2, form, input, button оставляем без изменений */
+.auth-container h2 {
+    margin-bottom: 25px;
+    color: #ff4b5c;
+}
+
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-field {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #121212;
+    color: #fff;
+    outline: none;
+    font-size: 14px;
+}
+
+.input-field:focus {
+    border-color: #ff4b5c;
+}
+
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #ff4b5c;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: #ff6b7c;
+    transform: translateY(-2px) scale(1.02);
+}
+
+.auth-container a {
+    color: #ff4b5c;
+    text-decoration: none;
+}
+
+.auth-container a:hover {
+    text-decoration: underline;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .auth-container {
+        padding: 30px 20px;
+    }
+}
