@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'CSS/style_shop.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="catalog-container">
+
+    <!-- Меню категорий -->
+    <nav class="categories-menu">
+        <ul>
+            {% for cat in categories %}
+            <li>
+                <a href="{{ cat.get_absolute_url }}" class="{% if cat.slug == category.slug %}active{% endif %}">
+                    {{ cat.name }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+    <!-- Текущая категория -->
+    <h1 class="category-header">{{ category.name }}</h1>
+
+    <!-- Товары категории -->
+    <div class="products-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <a href="{{ product.get_absolute_url }}">
+                {% if product.image %}
+                <div class="product-image">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                </div>
+                {% else %}
+                <div class="product-image">
+                    <img src="{% static 'images/no_image.png' %}" alt="{{ product.name }}">
+                </div>
+                {% endif %}
+                <div class="product-info">
+                    <h3>{{ product.name }}</h3>
+                    <p class="price">{{ product.price }} ₴</p>
+                </div>
+            </a>
+
+            {% if user.is_authenticated %}
+            <form action="{% url 'shop:add_to_cart' product.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn">В корзину</button>
+            </form>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn">Войдите, чтобы купить</a>
+            {% endif %}
+        </div>
+        {% empty %}
+        <p class="no-products">В этой категории пока нет товаров 😔</p>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

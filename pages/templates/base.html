@@ -1,0 +1,100 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleHub</title>
+
+    <!-- Основной стиль -->
+    <link rel="stylesheet" href="{% static 'CSS/style_base.css' %}">
+    {% block extra_css %}{% endblock %}
+
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-container">
+            <!-- Логотип -->
+            <div class="logo">
+                <a href="{% url 'index' %}">Style<span>Hub</span></a>
+            </div>
+
+            <!-- Главное меню -->
+            <nav class="main-nav">
+                <a href="{% url 'index' %}">{% trans "Главная" %}</a>
+                <a href="{% url 'about' %}">{% trans "О нас" %}</a>
+                <a href="{% url 'contacts' %}">{% trans "Контакты" %}</a>
+                <a href="{% url 'shop:shop_catalog' %}">{% trans "Каталог" %}</a>
+            </nav>
+
+            <!-- Пользовательская навигация -->
+            <div class="user-nav">
+                {% if user.is_authenticated %}
+                    <!-- Корзина -->
+                    <a href="{% url 'shop:cart' %}" class="cart-link">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        {% if cart_item_count > 0 %}
+                            <span class="cart-count">{{ cart_item_count }}</span>
+                        {% endif %}
+                    </a>
+
+                    <!-- Профиль -->
+                    <a href="{% url 'profile' %}" class="profile-link">
+                        {% if user.profile.avatar %}
+                            <img src="{{ user.profile.avatar.url }}" alt="Аватар" class="avatar">
+                        {% else %}
+                            <i class="fa-solid fa-user"></i>
+                        {% endif %}
+                        <span class="user-name">{{ user.first_name }}</span>
+                    </a>
+
+                    <!-- Выход -->
+                    <a href="{% url 'logout' %}" class="logout-link">{% trans "Выход" %}</a>
+                {% else %}
+                    <a href="/accounts/login/" class="login-link">{% trans "Вход" %}</a>
+                    <a href="/accounts/register/" class="register-link">{% trans "Регистрация" %}</a>
+                {% endif %}
+            </div>
+
+            <!-- Переключатель языка с иконкой -->
+            <form action="{% url 'set_language' %}" method="post" class="language-form">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="{{ request.path }}">
+    <label for="language-select" class="language-label">
+        <i class="fa-solid fa-globe"></i>
+    </label>
+    <select name="language" id="language-select" onchange="this.form.submit()">
+        {% get_available_languages as LANGUAGES %}
+        {% get_current_language as CURRENT_LANGUAGE %}
+        {% for code, name in LANGUAGES %}
+            <option value="{{ code }}" {% if code == CURRENT_LANGUAGE %}selected{% endif %}>
+                {{ name }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+
+
+            <!-- Форма поиска -->
+            <form class="search-form" action="/" method="get">
+                <input type="text" name="q" placeholder="{% trans 'Поиск...' %}" value="{{ query }}">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Футер -->
+    <footer class="site-footer">
+        <p>© 2025 <strong>{% trans "StyleHub" %}</strong>. {% trans "Все права защищены." %}</p>
+    </footer>
+</body>
+</html>

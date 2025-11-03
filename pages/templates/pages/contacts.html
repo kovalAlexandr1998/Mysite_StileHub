@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'CSS/style_contacts.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="contact-section">
+    <div class="contact-container">
+        <div class="contact-text">
+            <h1>Свяжитесь с нами</h1>
+            <p>Мы всегда рады ответить на ваши вопросы и помочь вам!</p>
+
+            <div class="contact-info">
+                <div class="contact-box">
+                    <h2>Адрес</h2>
+                    <p>г. Харьков, ул. Полевая, 12</p>
+                </div>
+                <div class="contact-box">
+                    <h2>Телефон</h2>
+                    <p>+38 (050) 123-45-67</p>
+                </div>
+                <div class="contact-box">
+                    <h2>Email</h2>
+                    <p><a href="mailto:info@stylehub.ua">info@stylehub.ua</a></p>
+                </div>
+                <div class="contact-box">
+                    <h2>График работы</h2>
+                    <p>Пн–Пт: 10:00–19:00</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+            {% if success %}
+                <div class="success-message">
+                    ✅ Спасибо! Ваше сообщение успешно отправлено.
+                </div>
+            {% endif %}
+
+            <form method="post" class="contact-form">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {{ form.name.errors }}
+                {{ form.email.errors }}
+                {{ form.message.errors }}
+
+                {{ form.name }}
+                {{ form.email }}
+                {{ form.message }}
+
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'CSS/style_shop_catalog.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="catalog-wrapper">
+
+    <!-- 🎬 Видео-фон -->
+    <video class="catalog-video" autoplay muted loop>
+        <source src="{% static 'videos/catalog.mp4' %}" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+    </video>
+
+    <div class="catalog-content">
+        <h1>Каталог товаров</h1>
+
+        <!-- Категории -->
+        <div class="categories">
+            {% for category in categories %}
+                <a href="{{ category.get_absolute_url }}" class="category-card">{{ category.name }}</a>
+            {% empty %}
+                <p>Категории отсутствуют.</p>
+            {% endfor %}
+        </div>
+
+        <!-- Товары -->
+        <div class="products-grid">
+            {% for product in products %}
+            <div class="product-card">
+                <a href="{{ product.get_absolute_url }}">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    {% else %}
+                        <img src="{% static 'images/no_image.png' %}" alt="Нет изображения">
+                    {% endif %}
+                    <h3>{{ product.name }}</h3>
+                </a>
+
+                <p>Цена: {{ product.price }} грн</p>
+
+                {% if user.is_authenticated %}
+                    <form action="{% url 'shop:add_to_cart' product.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-add-cart">В корзину</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn-add-cart">Войдите, чтобы купить</a>
+                {% endif %}
+            </div>
+            {% empty %}
+                <p>Товары отсутствуют.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}

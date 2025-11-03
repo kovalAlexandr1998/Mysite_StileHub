@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'CSS/style_index.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>StyleHub</h1>
+        <p>Будь в тренде. Создай свой стиль с нами </p>
+        <a href="{% url 'shop:shop_catalog' %}" class="btn-primary">Перейти в каталог</a>
+    </div>
+</section>
+
+<section class="features">
+    <h2>Почему выбирают нас</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <i class="fa-solid fa-shirt"></i>
+            <h3>Современные коллекции</h3>
+            <p>Только самые новые тренды мужской моды.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-gem"></i>
+            <h3>Высокое качество</h3>
+            <p>Отбираем лучшие материалы для вашей уверенности.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-truck-fast"></i>
+            <h3>Быстрая доставка</h3>
+            <p>Доставляем по всей Украине быстро и надёжно.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-headset"></i>
+            <h3>Поддержка 24/7</h3>
+            <p>Наши консультанты всегда готовы помочь.</p>
+        </div>
+    </div>
+</section>
+
+<section class="promo">
+    <div class="promo-text">
+        <h2>Сделай свой образ идеальным</h2>
+        <p>Открой коллекцию сезона и найди стиль, который подчеркивает твою индивидуальность.</p>
+        <a href="{% url 'shop:shop_catalog' %}" class="btn-secondary">Смотреть товары</a>
+    </div>
+    <div class="promo-image">
+        <img src="{% static 'images/logitep.jpg' %}" alt="Мужская мода">
+    </div>
+</section>
+
+<section class="subscribe">
+    <h2>Подпишись на обновления</h2>
+    <p>Узнавай первым о скидках и новых коллекциях</p>
+    <form class="subscribe-form">
+        <input type="email" placeholder="Введите ваш email" required>
+        <button type="submit">Подписаться</button>
+    </form>
+</section>
+{% endblock %}

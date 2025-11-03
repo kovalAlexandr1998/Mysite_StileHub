@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'CSS/style_shop.css' %}">
+<link rel="stylesheet" href="{% static 'CSS/style_product_detail.css' %}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.1/simple-lightbox.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="product-detail">
+    <h1>{{ product.name }}</h1>
+
+    <div class="product-main">
+        <!-- Главное изображение -->
+        <div class="main-image">
+            {% if product.image %}
+            <a href="{{ product.image.url }}" class="gallery-item">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            </a>
+            {% else %}
+            <img src="{% static 'images/no_image.png' %}" alt="Нет изображения">
+            {% endif %}
+        </div>
+
+        <!-- Информация о товаре -->
+        <div class="product-info">
+            <p class="price">{{ product.price }} ₴</p>
+            <p>{{ product.description }}</p>
+
+            <h3>Характеристики</h3>
+            <ul>
+                {% for spec in product.specifications.all %}
+                <li>{{ spec.name }}: {{ spec.value }}</li>
+                {% empty %}
+                <li>Характеристики отсутствуют</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Размеры и наличие</h3>
+            <ul>
+                {% for size in product.sizes.all %}
+                <li>{{ size.size }} — {{ size.quantity }} шт.</li>
+                {% empty %}
+                <li>Размеры не указаны</li>
+                {% endfor %}
+            </ul>
+
+            <!-- Галерея -->
+            <h3>Галерея</h3>
+            <div class="product-gallery">
+                {% for img in product.images.all %}
+                <a href="{{ img.image.url }}" class="gallery-item">
+                    <img src="{{ img.image.url }}" alt="{{ img.alt_text }}">
+                </a>
+                {% empty %}
+                <p>Дополнительные фото отсутствуют</p>
+                {% endfor %}
+            </div>
+
+            {% if user.is_authenticated %}
+            <form action="{% url 'shop:add_to_cart' product.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn">Добавить в корзину</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Комментарии -->
+    <div class="product-comments">
+        <h3>Комментарии</h3>
+        <div class="comments">
+            {% for comment in comments %}
+                <div class="comment">
+                    <p><strong>{{ comment.user_name }}</strong>
+                       <span class="comment-time">({{ comment.created_at|date:"d.m.Y H:i" }})</span>
+                    </p>
+                    <p>{{ comment.text }}</p>
+                </div>
+            {% empty %}
+                <p>Комментариев пока нет. Будьте первым!</p>
+            {% endfor %}
+        </div>
+
+        <h4>Оставить комментарий</h4>
+        <form method="post" class="comment-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.1/simple-lightbox.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const lightbox = new SimpleLightbox('.gallery-item', {
+        captions: true,
+        captionSelector: 'img',
+        captionType: 'alt',
+        animationSpeed: 250,
+        fadeSpeed: 250,
+        close: true
+    });
+});
+</script>
+{% endblock %}

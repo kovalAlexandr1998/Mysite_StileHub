@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'CSS/style_order.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="order-section">
+    <h2>Оформление заказа</h2>
+
+    <!-- Суммарные товары -->
+    <div class="cart-summary">
+        <h3>Ваши товары</h3>
+        {% if items %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Товар</th>
+                    <th>Количество</th>
+                    <th>Цена</th>
+                    <th>Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.product.price }} грн</td>
+                    <td>{{ item.total_price }} грн</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p class="total">Итого: {{ total }} грн</p>
+        {% else %}
+        <p>Ваша корзина пуста.</p>
+        {% endif %}
+    </div>
+
+    <!-- Форма заказа -->
+    <div class="order-form">
+        <h3>Данные для доставки</h3>
+        <form method="post">
+            {% csrf_token %}
+
+            <label>ФИО:</label>
+            <input type="text" name="full_name" value="{{ form.full_name.value }}" class="input-field">
+
+            <label>Номер телефона:</label>
+            <input type="text" name="phone_number" value="{{ form.phone_number.value }}" class="input-field">
+
+            <label>Email:</label>
+            <input type="email" name="email" value="{{ form.email.value }}" class="input-field">
+
+            <label>Отделение Новой Почты:</label>
+            <input type="text" name="novaposhta_branch" value="{{ form.novaposhta_branch.value }}" class="input-field">
+
+            <button type="submit" class="btn-primary">Подтвердить заказ</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
